@@ -1,4 +1,5 @@
 import "./globals.css";
+import Header from '../components/header'; // Import the Header component
 
 export const metadata = {
   title: "Create Next App",
@@ -9,6 +10,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased">
+        {/* Add the Header component here */}
+        <Header />
+        
+        {/* Render the children */}
         {children}
       </body>
     </html>
