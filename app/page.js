@@ -1,19 +1,23 @@
-import { Suspense } from 'react';
-import { fetchProducts } from '../../lib/api';
-import ProductGrid from '../../components/ProductGrid';
-import Pagination from '../../components/Pagination';
+// app/page.js
+import Products from '../components/products';
+import { fetchProducts } from '../lib/api';
+import './globals.css';
 
-export default async function ProductsPage({ searchParams }) {
-  const page = parseInt(searchParams.page) || 1;
-  const products = await fetchProducts(page);
-
-  return (
-    <div>
-      <h1>Products</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ProductGrid products={products} />
-      </Suspense>
-      <Pagination currentPage={page} />
-    </div>
-  );
+export default async function HomePage() {
+  try {
+    const initialProducts = await fetchProducts(1);
+    return (
+      <main>
+        <h1>Product List</h1>
+        <Products initialProducts={initialProducts} />
+      </main>
+    );
+  } catch (error) {
+    return (
+      <main>
+        <h1>Error fetching products</h1>
+        <p>There was an error fetching the product data. Please try again later.</p>
+      </main>
+    );
+  }
 }
