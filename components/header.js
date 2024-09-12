@@ -1,3 +1,4 @@
+
 // components/Header.js
 import Link from 'next/link';
 
@@ -11,8 +12,6 @@ const Header = () => {
           </Link>
         </div>
 
-        <div>
-        </div>
       </div>
     </header>
   );
