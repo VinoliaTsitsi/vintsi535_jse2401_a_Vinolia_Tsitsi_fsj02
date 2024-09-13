@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import { fetchProduct } from '@/lib/api';
 
-export default async function  ProductDetail ({params }) {
-  const product = await fetchProduct(params.id)
+export default async function ProductDetail({ params }) {
+  const product = await fetchProduct(params.id);
 
   if (!product) return <p>Product not found</p>;
 
-  // const imageUrl = product.imageUrl ? product.imageUrl : '/default-image.jpg';
-  // const altText = product.title ? product.title : 'Product Image';
+  // Check if the product has images and use the first image as a default
+  const imageUrl = product.images && product.images.length > 0 ? product.images[0] : '/default-image.jpg';
 
   return (
-    <div className='' >
+    <div className="">
       <h1>{product.title || 'No Title'}</h1>
       <p>{product.description || 'No description available.'}</p>
-      <Image src={product.images} alt={product.tile}  width={600} height={400} />
+      <Image src={imageUrl} alt={product.title || 'Product Image'} width={600} height={400} />
       <p>Price: ${product.price || 'N/A'}</p>
       <p>Category: {product.category || 'N/A'}</p>
       <p>Tags: {product.tags ? product.tags.join(', ') : 'No tags'}</p>
@@ -34,18 +34,4 @@ export default async function  ProductDetail ({params }) {
       </div>
     </div>
   );
-};
-
-// export async function getServerSideProps(context) {
-//   const { id } = context.params;
-//   try {
-//     const res = await fetch(`https://example.com/api/products/${id}`);
-//     if (!res.ok) throw new Error('Product not found');
-//     const product = await res.json();
-//     return { props: { product } };
-//   } catch (error) {
-//     return { props: { product: null } };
-//   }
-// }
-
-
+}
