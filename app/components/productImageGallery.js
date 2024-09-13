@@ -5,6 +5,27 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+/**
+ * ProductImageGallery component displays a carousel of product images.
+ *
+ * This component uses the `react-slick` library to create a responsive image carousel.
+ * It handles image errors by displaying a placeholder image and provides custom
+ * navigation buttons for manually scrolling through images.
+ *
+ * @param {Object} props - Component properties.
+ * @param {string[]} props.images - Array of image URLs to display in the gallery.
+ * 
+ * @returns {JSX.Element} The ProductImageGallery component.
+ *
+ * @example
+ * const images = [
+ *   'https://example.com/image1.jpg',
+ *   'https://example.com/image2.jpg',
+ *   'https://example.com/image3.jpg',
+ * ];
+ * 
+ * return <ProductImageGallery images={images} />;
+ */
 const ProductImageGallery = ({ images }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [imageError, setImageError] = useState(false);
@@ -16,7 +37,7 @@ const ProductImageGallery = ({ images }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     afterChange: index => setCurrentImage(index),
-    arrows: true,
+    arrows: false, // Disabled to use custom buttons
   };
 
   const handleImageError = () => setImageError(true);

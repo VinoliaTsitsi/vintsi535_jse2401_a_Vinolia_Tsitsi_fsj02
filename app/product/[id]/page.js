@@ -5,6 +5,25 @@ import { useRouter } from 'next/navigation'; // Use next/navigation for the rout
 import Image from 'next/image';
 import { fetchProduct } from '@/lib/api';
 
+/**
+ * ProductDetail component displays detailed information about a single product.
+ *
+ * This component fetches product data based on the product ID provided in the `params` object,
+ * and displays the product details including images, description, price, and reviews. It also
+ * includes a carousel for navigating through multiple images and a button to navigate back to
+ * the product listing page.
+ *
+ * @param {Object} props - Component properties.
+ * @param {Object} props.params - Route parameters.
+ * @param {string} props.params.id - The ID of the product to fetch and display.
+ * 
+ * @returns {JSX.Element} The ProductDetail component.
+ * 
+ * @example
+ * const params = { id: '123' };
+ * 
+ * return <ProductDetail params={params} />;
+ */
 export default function ProductDetail({ params }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0); // For image carousel
   const [product, setProduct] = useState(null); // Store product data

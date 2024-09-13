@@ -4,6 +4,33 @@ import { useState, useEffect } from 'react';
 import { fetchProducts } from '../../lib/api'; // Ensure the fetchProducts function is properly imported
 import ProductCard from './productCard'; // Ensure this path is correct
 
+/**
+ * Products component displays a paginated list of products.
+ *
+ * This component fetches products from an API based on the current page and updates
+ * the product list accordingly. It includes pagination controls to navigate through
+ * the pages of products.
+ *
+ * @param {Object} props - Component properties.
+ * @param {Object[]} props.initialProducts - Initial list of products to display.
+ * @param {number} props.initialProducts[].id - Unique identifier for the product.
+ * @param {string} props.initialProducts[].title - Title of the product.
+ * @param {string} props.initialProducts[].description - Description of the product.
+ * @param {string} props.initialProducts[].image - URL of the product image.
+ * @param {number} props.initialProducts[].price - Price of the product.
+ * @param {string} props.initialProducts[].category - Category of the product.
+ * @param {number} props.initialProducts[].rating - Rating of the product.
+ * 
+ * @returns {JSX.Element} The Products component.
+ * 
+ * @example
+ * const initialProducts = [
+ *   { id: 1, title: 'Product 1', description: 'Description 1', image: 'https://example.com/image1.jpg', price: 100, category: 'Category 1', rating: 4.5 },
+ *   { id: 2, title: 'Product 2', description: 'Description 2', image: 'https://example.com/image2.jpg', price: 150, category: 'Category 2', rating: 4.0 },
+ * ];
+ * 
+ * return <Products initialProducts={initialProducts} />;
+ */
 const Products = ({ initialProducts }) => {
   const [products, setProducts] = useState(initialProducts); // Set initial products
   const [page, setPage] = useState(1); // Initialize page state
