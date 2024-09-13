@@ -1,6 +1,9 @@
 // app/page.js
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import RootLayout from './layout'; // Import the RootLayout
-import Products from '../components/products';
+import Products from './components/products';
 import { fetchProducts } from '../lib/api';
 import './globals.css';
 
